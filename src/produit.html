@@ -90,22 +90,8 @@
                                     </div>
                                     <select id="option-vernis" class="form-select form-select-mg mb-3" aria-label="choix du vernis">
                                     </select>
-                                    <div class="row">
-                                        <div class="col-5 col-sm-3 col-md-5 col-lg-4 col-xl-3 my-auto">
-                                            <p>Quantité :</p>
-                                        </div>
-                                        <div class="col-4 col-sm-3 col-md-4 col-lg-3 ">
-                                            <select id="quantité" class="form-select mb-3" aria-label="Quantité">
-                                                <option selected value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                 <button id="AjoutPanier" class="btn btn-secondary" data-bs-toggle="modal"
-                                 data-bs-target="#ModalAjoutPanier">Ajouter au panier</button>     
+                                    <button id="AjoutPanier" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#ModalAjoutPanier">Ajouter au panier</button>     
                                 </div>
                             </div>
                         </div>
@@ -116,26 +102,24 @@
           
             </main>
 
-            <!-- Modal section -->
-            <div class="modal" id="ModalAjoutPanier" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Modal title</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+            <!-- Modal section renseigné et appelé suite au click Ajout Panier -->
+            <div class="modal fade" id="ModalAjoutPanier" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Article ajouté</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p id="nom-article-modal"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-secondary" type="button" href="panier.html">Voir mon panier</a>
+                            <a class="btn btn-success" type="button" href="../index.html">Continuer les achats</a>            
+                        </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        
 
             <!-- FOOTER -->  
             <footer class="bg-oak py-1">
@@ -151,8 +135,8 @@
         </div>
 
         <!-- Requete Détail Article -->
-        <script src="article.js">
-        </script>
+        <script src="functions.js"></script>
+        <script src="produit.js"></script>
 
         <!-- Boostrap 502 JS : Bundle script including Popper -->
 		<script

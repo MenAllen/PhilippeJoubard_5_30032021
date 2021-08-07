@@ -13,7 +13,7 @@
 		<!-- Styles -->
 		<link rel="stylesheet" href="style.css" />
 
-		<title>ORINOCO -  Pour choisir son meuble en chêne</title>
+		<title>ORINOCO - Votre Panier</title>
 
 		<!-- Boostrap 502 CSS -->
 		<link
@@ -27,8 +27,8 @@
 	<body>
 
 		<!-- Chargement Polyfill / NECESSAIRE pour certaines commandes type ASYNC / WAIT -->
-<!--		<script src="./dist/polyfill.bundle.js"></script>
-		<script src="./dist/app.bundle.js"></script> -->
+		<script src="./dist/polyfill.bundle.js"></script>
+		<script src="./dist/app.bundle.js"></script>
 
 
         <!-- CONTENEUR PAGE PRINCIPAL -->
@@ -48,10 +48,10 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item ml-2">
-                                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                                        <a class="nav-link" aria-current="page" href="#">Accueil</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Panier</a>
+                                        <a class="nav-link active" href="#">Panier</a>
                                     </li>
                                 </ul>
                             </div>
@@ -65,16 +65,12 @@
 
                 <div class="container-fluid">
 
-                    <!-- Error message when server not reachable-->
+                    <!-- connexion error message  -->
                     <div id="error-display" class="alert alert-danger text-center" role="alert">
                         <i id="error__logo" class="fas fa-exclamation-triangle"></i>
                         Server connection failure or page not found. check it out!
                     </div>
-               
-                    <!-- Articles Display -->
-                    <div class="row mx-3 my-4 bg-oak" id="liste">
-                        <!-- Template Article HTML -> index.js -->
-                    </div>
+                
 
                 </div>
           
@@ -94,9 +90,9 @@
 
         </div>
 
-        <!-- Requete des produits via API furniture / Lecture Panier -->
-        <script src="./src/functions.js"></script>
-        <script src="./src/index.js"></script>
+        <!-- Requete des produits -->
+        <script src="">
+        </script>
 
         <!-- Boostrap 502 JS : Bundle script including Popper -->
 		<script

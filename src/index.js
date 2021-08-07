@@ -82,7 +82,7 @@ function displayArticle($name, $imageurl, $description, $price, $_id) {
                     /* Creation de l'ancre du bouton */
                     let abtn = document.createElement("a");
                     abtn.classList.add("btn", "btn-secondary", "stretched-link");
-                    abtn.setAttribute("href", "./src/article.html?_id=" + $_id);
+                    abtn.setAttribute("href", "./src/produit.html?_id=" + $_id);
                     abtn.setAttribute("alt", $name);
                     abtn.textContent = "Voir cet article";
                     divCardBody.append(abtn);
