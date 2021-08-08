@@ -1,11 +1,11 @@
 #error-display {
-  display: none;
+    display: none;
 }
 
 .bg-oak {
-  background-image: url("./img/oak4.jpg");
+    background-image: url("./img/oak4.jpg");
 }
 
 .bg-grey {
-  background-color: #778899;
+    background-color: #778899;
 }
