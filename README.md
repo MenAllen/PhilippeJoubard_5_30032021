@@ -10,7 +10,7 @@ Goal, as a front-end developer working for ORINOCO company, is to develop a fron
 - This repo only includes front-end application
 - Backend application is available from Orinoco github repository: 
 
-			https://github.com/OpenClassrooms-Student-Center/JWDP5
+			https://github.com/OpenClassrooms-Student-Center/JWDP5.git
 			This is the back end server for Project five of the Junior Web Developer path.
 			Prerequisites:
 			You will need to have Node and npm installed locally on your machine.
