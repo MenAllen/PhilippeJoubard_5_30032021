@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="FR">
   <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8" />
@@ -92,16 +92,6 @@
             Server connection failure or page not found. check it out!
           </div>
 
-          <!-- Affichage d'un message spécifique quand le panier est vide -->
-          <div
-            id="BasketEmpty"
-            class="alert alert-danger text-center d-none"
-            role="alert"
-          >
-            <i id="error__logo" class="fas fa-exclamation-triangle"></i>
-            Your basket looks empty, Start Shopping !
-          </div>
-
           <!-- Affichage du contenu du Panier et du prix total -->
           <div id="DisplayBasket" class="container border bg-light mt-5">
             <div class="table-responsive">
@@ -136,7 +126,7 @@
               </button>
             </div>
             <div class="col-12 col-sm-4 my-4">
-              <a class="btn btn-dark" type="button" href="../index.html"
+              <a class="btn btn-dark" href="../index.html"
                 >Continuer les achats</a
               >
             </div>
@@ -165,12 +155,8 @@
                   <p id="nom-article-modal"></p>
                 </div>
                 <div class="modal-footer">
-                  <a class="btn btn-secondary" id="emptyBasket" type="button"
-                    >Oui</a
-                  >
-                  <a class="btn btn-success" type="button" href="../index.html"
-                    >Non</a
-                  >
+                  <a class="btn btn-secondary" id="emptyBasket">Oui</a>
+                  <a class="btn btn-success" href="../index.html">Non</a>
                 </div>
               </div>
             </div>
