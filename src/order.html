@@ -15,7 +15,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../style.css" />
 
-    <title>ORINOCO - Votre Article</title>
+    <title>ORINOCO - Votre commande</title>
 
     <!-- Boostrap 502 CSS -->
     <link
@@ -28,7 +28,7 @@
 
   <body>
     <!-- CONTENEUR PAGE PRINCIPAL -->
-    <div class="page-container min-vh-100">
+    <div class="page-container">
       <!-- HEADER -->
       <header class="bloc bg-white l-bloc">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,10 +55,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ml-2">
-                  <a
-                    class="nav-link active"
-                    aria-current="page"
-                    href="../index.html"
+                  <a class="nav-link" aria-current="page" href="../index.html"
                     >Accueil</a
                   >
                 </li>
@@ -75,89 +72,79 @@
 
       <!-- MAIN -->
       <main>
-        <div class="container-fluid bg-oak">
-          <!-- Spinner -->
-          <div class="text-center">
-            <div
-              id="spinner"
-              class="spinner-border"
-              style="width: 3rem; height: 3rem"
-            ></div>
-          </div>
-
-          <!-- Error message when server not reachable-->
-          <div
-            id="errorDisplay"
-            class="alert alert-danger text-center invisible"
-            role="alert"
-          >
-            <i id="error__logo" class="fas fa-exclamation-triangle"></i>
-            Server connection failure or page not found. check it out!
-          </div>
-
-          <!-- Article Detailed Display -->
-          <div class="card border bg-light shadow p-3 m-5 rounded">
-            <div class="row">
-              <div class="col-md-7">
-                <img
-                  src=""
-                  id="image-article"
-                  class="img-fluid img-thumbnail p-1"
-                  alt=""
-                />
-              </div>
-              <div class="col-md-5">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <h5 id="nom-article" class="card-title"></h5>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <h5 id="prix-article" class="card-title text-right"></h5>
-                    </div>
-                    <p id="description-article" class="card-text mb-3"></p>
-                  </div>
-                  <select
-                    id="option-vernis"
-                    class="form-select form-select-mg mb-3"
-                    aria-label="choix du vernis"
-                  ></select>
-                  <button
-                    id="AjoutPanier"
-                    class="btn btn-secondary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#ModalAjoutPanier"
+        <div class="container-fluid bg-oak pt-5">
+          <!-- Affichage de la commande -->
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="p-5">
+                  <h5 id="firstName" class="fs-2 text-center"></h5>
+                  <div
+                    class="border-top mt-3 mb-3 border-bottom table-responsive"
                   >
-                    Ajouter au panier
-                  </button>
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <td>Date</td>
+                          <td id="dateOrder" class="font-weight-bold"></td>
+                        </tr>
+                        <tr>
+                          <td>Numéro de commande</td>
+                          <td id="orderId"></td>
+                        </tr>
+
+                        <tr>
+                          <td>Adresse de livraison</td>
+                          <td>
+                            <span id="deliveryName"></span>
+                            <br />
+                            <span id="deliveryAddress"></span>
+                            <br />
+                            <span id="deliveryCity"></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="product border-bottom table-responsive">
+                    <table class="table table-borderless">
+                      <tbody id="basketlist"></tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="2"></th>
+                          <th class="text-center">Total</th>
+                          <th id="orderPrice" class="text-center"></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <p class="text-center">
+                    Un mail de confirmation vous sera envoyé dès l'expédition de
+                    la commande
+                  </p>
+                  <h5 class="font-weight-bold mb-0 fs-2 text-center">
+                    Encore merci de votre confiance !
+                  </h5>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
 
-      <!-- Modal section renseigné et appelé suite au click Ajout Panier -->
-      <div class="modal fade" id="ModalAjoutPanier" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Article ajouté</h5>
-            </div>
-            <div class="modal-body">
-              <p id="nom-article-modal"></p>
-            </div>
-            <div class="modal-footer">
-              <a class="btn btn-secondary" type="button" href="panier.html"
-                >Voir mon panier</a
+          <!-- Affichage des boutons IMPRIMER et RETOUR Accueil-->
+          <div class="text-center my-2 row">
+            <div class="col-12 col-sm-6 my-4">
+              <a class="btn btn-dark" type="button" href="../index.html"
+                >Retour</a
               >
-              <a class="btn btn-success" type="button" href="../index.html"
-                >Continuer les achats</a
-              >
+            </div>
+            <div class="col-12 col-sm-6 my-4">
+              <button type="submit" class="btn btn-dark mx-5" id="printOrder">
+                Imprimer
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       <!-- FOOTER -->
       <footer class="bg-light py-1">
@@ -180,9 +167,9 @@
       </footer>
     </div>
 
-    <!-- Requete Détail Article -->
+    <!-- Requetes Panier -->
     <script src="functions.js"></script>
-    <script src="produit.js"></script>
+    <script src="order.js"></script>
 
     <!-- Boostrap 502 JS : Bundle script including Popper -->
     <script

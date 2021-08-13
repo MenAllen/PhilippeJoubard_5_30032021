@@ -1,141 +1,123 @@
-//========================================================================================
-
-/*displaySingleproduct affiche un élément du panier
-
-		<tbody>
-			<tr>
-				<td>	<img src="imgurl" alt="name">  </td>
-				<td>	(name)	</td>
-				<td>	(option)	</td>
-				<td>	(quantity) </td>
-				<td>	(price) </td>
-				<td>	(quantity * price) </td>
-			</tr>
-		</tbody>
-
-		<tfoot>
-			<tr>
-				<th colspan="4"></th>
-				<th colspan="1"></th>
-				<th colspan="1"></th>
-			</tr>
-		</tfoot>
-*/
-
-function displaySingleProduct(element) {
-    // Positionnement dans le HTML: tbody
-    let b = document.getElementById("basketlist");
-
-    // Creation de la ligne enfant de basketlist
-    let newLine = document.createElement("tr");
-    newLine.classList.add("text-center");
-    b.append(newLine);
-
-    // Champ produit
-    let tdProduit = document.createElement("td");
-    tdProduit.classList.add("w-25", "h-25");
-    newLine.append(tdProduit);
-
-    // Image dans champ produit
-    let image = document.createElement("img");
-    image.classList.add("img-fluid", "img-thumbnail", "rounded");
-    image.setAttribute("src", element.imgurl);
-    image.setAttribute("alt", element.name);
-    tdProduit.append(image);
-
-    // Champ nom
-    let tdName = document.createElement("td");
-    tdName.classList.add("align-middle");
-    tdName.textContent = element.name;
-    newLine.append(tdName);
-
-    // Champ option vernis
-    let tdOption = document.createElement("td");
-    tdOption.classList.add("align-middle");
-    tdOption.textContent = element.option;
-    newLine.append(tdOption);
-
-    // Champ quantité
-    let tdQuantity = document.createElement("td");
-    tdQuantity.classList.add("align-middle");
-    tdQuantity.textContent = element.quantity;
-    newLine.append(tdQuantity);
-
-    // Champ prix
-    let tdPrice = document.createElement("td");
-    tdPrice.classList.add("align-middle");
-    tdPrice.textContent = formatPrice(element.price);
-    newLine.append(tdPrice);
-
-    //champ prix total = quantité X prix
-    let tdTotalPrice = document.createElement("td");
-    tdTotalPrice.classList.add("align-middle", "font-weight-bold");
-    tdTotalPrice.textContent = formatPrice(element.quantity * element.price);
-    newLine.append(tdTotalPrice);
-
-    // Mise à jour du prix total du panier
-    myBasketPrice += element.quantity * element.price;
-}
-
-function displayBasketPrice() {
-    // Positionnement dans le HTML: tfoot
-    b = document.getElementById("totalpricebasket");
-
-    // Creation de la ligne enfant de totalpricebasket
-    newLine = document.createElement("tr");
-    newLine.classList.add("text-center");
-    b.append(newLine);
-
-    // 4 Champs vides
-    let thEmpty = document.createElement("th");
-    thEmpty.setAttribute("colspan", 4);
-    newLine.append(thEmpty);
-
-    // 1 Champ texte
-    let thTexte = document.createElement("th");
-    thTexte.setAttribute("colspan", 1);
-    thTexte.textContent = "Total:";
-    newLine.append(thTexte);
-
-    // 1 Champ Somme Totale
-    let thTotal = document.createElement("th");
-    thTotal.setAttribute("colspan", 1);
-    thTotal.textContent = formatPrice(myBasketPrice);
-    newLine.append(thTotal);
-}
+//================================== Fonctions Locales =========================================
 
 //============================================================================================
 //displayBasket affiche tous les éléments du panier dans panier.html et calcule le prix total
 function displayBasket() {
-    myBasketPrice = 0;
+  let fullList = true;
+  myBasketPrice = 0;
 
-    for (product of myBasket) {
-        displaySingleProduct(product);
-    }
+  for (product of myBasket) {
+    displaySingleProduct(product, fullList);
+  }
 
-    displayBasketPrice();
+  displayBasketPrice(myBasketPrice);
 }
 
+//============================================================================================
+// treatEmptyBasket reinitialise le panier,et redirige vers la page d'accueil
+function treatEmptyBasket() {
+  clearBasket();
+  window.location.href = "../index.html";
+}
+
+//========================================================================================
+// displayForm affiche le formulaire de commande à remplir
+function displayForm() {
+  // Afficher le formulaire si le panier n'est pas vide
+  if (myBasket.length > 0) {
+    // Afficher le formulaire
+    let elt = document.getElementById("displayForm");
+    elt.classList.remove("d-none");
+
+    // Masquer les boutons
+    elt = document.getElementById("hideButton");
+    elt.classList.add("d-none");
+  }
+
+  // Recentrage du formulaire
+  window.location.href = "#displayForm";
+}
+
+//========================================================================================
+// initialise myContact avec les valeurs du formulaire
+function setmyContact() {
+  //
+  myContact.firstName = document.getElementById("firstName").value;
+  myContact.lastName = document.getElementById("lastName").value;
+  myContact.email = document.getElementById("email").value;
+  myContact.address = document.getElementById("address").value;
+  myContact.city = document.getElementById("city").value;
+}
+
+// Initialise myTabId avec les Ids du panier
+function setmyIds() {
+  myTabId = [];
+
+  for (let element of myBasket) {
+    let nbrelts = element.quantity;
+    while (nbrelts > 0) {
+      myTabId.push(element.id);
+      nbrelts--;
+    }
+  }
+}
+
+// Envoie les informatiosn contact et Ids sur l'API
+function sendPost(contact, products) {
+  fetch("http://localhost:3000/api/furniture/order", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({ contact, products }),
+  })
+    .then((data) => data.json())
+
+    .then((jsonresponse) => {
+      // enregistrement des données reçues dans localstorage
+      localStorage.setItem("order", JSON.stringify(jsonresponse));
+
+      // clean-up du message d'erreur eventuel
+      clearErrorMessage();
+
+      // redirection vers la page order
+      window.location.href = "order.html";
+    })
+
+    .catch(function (err) {
+      displayErrorMessage(err);
+      console.log("Erreur Catch: " + err);
+    });
+}
+
+// ProceedOrder : Récupère les données du formulaire et lance la requete au serveur
+function proceedOrder() {
+  setmyContact();
+
+  setmyIds();
+  console.log(myTabId);
+  sendPost(myContact, myTabId);
+}
+
+//====================================== Traitements =======================================================
+
+// Update Panier dans Header
+myBasketBalance();
+
+// Affichage du panier
 displayBasket();
 
-//============================================================================================
-// orderBasket provoque l'affichage du formulaire de commande à remplir
-function orderBasket() {
-    // Afficher le formulaire
-}
+// Traietement du bouton 'vider le panier'
+document
+  .getElementById("emptyBasket")
+  .addEventListener("click", treatEmptyBasket);
 
-document.getElementById("launchOrder").addEventListener("click", orderBasket);
+// Traitement du bouton 'lancer la commande' sur visualisation panier
+document.getElementById("launchOrder").addEventListener("click", displayForm);
 
-//============================================================================================
-// clearBasket provoque la remise à zéro du panier, l'affichage d'une fenetre d'alerte
-// et la redirection vers la page d'accueil
-function clearBasket() {
-    myBasket = [];
-    localStorage.setItem("furniture", JSON.stringify(myBasket));
-
-    alert("Votre panier a été vidé");
-
-    window.location.href = "../index.html";
-}
-
-document.getElementById("emptyBasket").addEventListener("click", clearBasket);
+// Traitement de la soumission du formulaire de commande
+let elt = document.getElementById("formOrder");
+elt.addEventListener("submit", (e) => {
+  e.preventDefault();
+  proceedOrder();
+});

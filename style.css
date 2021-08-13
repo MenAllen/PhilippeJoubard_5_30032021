@@ -1,11 +1,15 @@
-#error-display {
-    display: none;
-}
-
+/* Fond d'ecran planches de chêne brutes */
 .bg-oak {
-    background-image: url("./img/oak4.jpg");
+  background-image: url("./img/oak5.jpg");
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: cover;
+  overflow: hidden;
 }
 
-.bg-grey {
-    background-color: #778899;
+/* Message d'accueil en font identique au logo Orinoco */
+.text-ori {
+  font-family: "Permanent Marker", cursive;
+  font-size: 60px;
 }
