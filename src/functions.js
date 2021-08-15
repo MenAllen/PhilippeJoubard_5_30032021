@@ -36,8 +36,16 @@ let myBasketPrice = 0;
 
 // Arrête le spinner
 function stopSpinner() {
+  console.log("stopSpinner");
   let elt = document.getElementById("spinner");
   elt.classList.add("d-none");
+}
+
+// Démarre le spinner
+function startSpinner() {
+  console.log("startSpinner");
+  let elt = document.getElementById("spinner");
+  elt.classList.remove("d-none");
 }
 
 // Affiche un message d'erreur suite à un fetch / catch puis arrête le spinner
@@ -163,7 +171,6 @@ function displaySingleProduct(element, fullList) {
   let tdName = document.createElement("td");
   tdName.classList.add("align-middle");
   tdName.textContent = element.name;
-  console.log(tdName.textContent);
   newLine.append(tdName);
 
   if (fullList) {

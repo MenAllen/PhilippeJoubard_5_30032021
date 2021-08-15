@@ -12,6 +12,14 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- Font Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Styles -->
     <link rel="stylesheet" href="../style.css" />
 
@@ -28,7 +36,7 @@
 
   <body>
     <!-- CONTENEUR PAGE PRINCIPAL -->
-    <div class="page-container">
+    <div class="page-container min-vh-100">
       <!-- HEADER -->
       <header class="bloc bg-white l-bloc">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -74,18 +82,21 @@
       <main>
         <div class="container-fluid bg-oak">
           <!-- Spinner -->
-          <div class="text-center d-none">
-            <div
-              id="spinner"
-              class="spinner-border"
-              style="width: 3rem; height: 3rem"
-            ></div>
+          <div id="spinner" class="text-center mt-3 d-none">
+            <div class="spinner-border" style="width: 3rem; height: 3rem"></div>
           </div>
 
-          <!-- Error message when server not reachable-->
+          <!-- Message D'information quand le panier est vide -->
+          <div class="p-3 mx-3 bg-transparent">
+            <h1 id="basketIsEmpty" class="text-center text-ori">
+              Votre panier est Vide !
+            </h1>
+          </div>
+
+          <!-- Message d'erreur quand le serveur de nrépond pas -->
           <div
             id="errorDisplay"
-            class="alert alert-danger text-center invisible"
+            class="alert alert-danger text-center invisible align-self-center"
             role="alert"
           >
             <i id="error__logo" class="fas fa-exclamation-triangle"></i>
@@ -134,6 +145,7 @@
               <button
                 type="submit"
                 class="btn btn-dark mx-5"
+                id="emptyBasket"
                 data-bs-toggle="modal"
                 data-bs-target="#ModalViderPanier"
               >
@@ -144,7 +156,7 @@
 
           <!-- Modal section renseignée et appelée suite au click Vider le Panier -->
           <div class="modal fade" id="ModalViderPanier" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title">
@@ -155,7 +167,7 @@
                   <p id="nom-article-modal"></p>
                 </div>
                 <div class="modal-footer">
-                  <a class="btn btn-secondary" id="emptyBasket">Oui</a>
+                  <a class="btn btn-secondary" id="emptyBasketConfirm">Oui</a>
                   <a class="btn btn-success" href="../index.html">Non</a>
                 </div>
               </div>
@@ -163,7 +175,7 @@
           </div>
 
           <!-- Formulaire de commande -->
-          <div id="displayForm" class="container d-none mt-5 mb-5">
+          <div id="displayFormulaire" class="container d-none mt-5 mb-5">
             <div class="my-5 fs-5 bg-dark text-center text-white">
               Pour passer votre commande, merci de remplir ce formulaire
             </div>

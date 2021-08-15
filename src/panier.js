@@ -1,16 +1,34 @@
 //================================== Fonctions Locales =========================================
 
 //============================================================================================
-//displayBasket affiche tous les éléments du panier dans panier.html et calcule le prix total
+//displayBasket signale si le panier est vide , sinon affiche tous les éléments du panier
 function displayBasket() {
   let fullList = true;
+  let elt = document.getElementById("basketIsEmpty");
+  let btn1 = document.getElementById("launchOrder");
+  let btn2 = document.getElementById("emptyBasket");
+
   myBasketPrice = 0;
 
-  for (product of myBasket) {
-    displaySingleProduct(product, fullList);
-  }
+  if (myBasket.length > 0) {
+    // Affichage de chaque element
+    for (product of myBasket) {
+      displaySingleProduct(product, fullList);
+    }
 
-  displayBasketPrice(myBasketPrice);
+    // Affichage du prix total
+    displayBasketPrice(myBasketPrice);
+
+    // On n'affiche pas 'panier vide'
+    elt.classList.add("d-none");
+    btn1.removeAttribute("disabled");
+    btn2.removeAttribute("disabled");
+  } else {
+    // On affiche panier vide
+    elt.classList.remove("d-none");
+    btn1.setAttribute("disabled", "");
+    btn2.setAttribute("disabled", "");
+  }
 }
 
 //============================================================================================
@@ -25,17 +43,23 @@ function treatEmptyBasket() {
 function displayForm() {
   // Afficher le formulaire si le panier n'est pas vide
   if (myBasket.length > 0) {
-    // Afficher le formulaire
-    let elt = document.getElementById("displayForm");
-    elt.classList.remove("d-none");
-
-    // Masquer les boutons
-    elt = document.getElementById("hideButton");
-    elt.classList.add("d-none");
+    // Afficher le formulaire et Masquer les boutons
+    let eltForm = document.getElementById("displayFormulaire");
+    eltForm.classList.remove("d-none");
+    let eltBtn = document.getElementById("hideButton");
+    eltBtn.classList.add("d-none");
   }
-
   // Recentrage du formulaire
-  window.location.href = "#displayForm";
+  window.location.href = "#displayFormulaire";
+}
+
+//========================================================================================
+// clearForm amasque le formulaire de commande et affiche les boutons
+function clearForm() {
+  let eltForm = document.getElementById("displayFormulaire");
+  eltForm.classList.add("d-none");
+  let eltBtn = document.getElementById("hideButton");
+  eltBtn.classList.remove("d-none");
 }
 
 //========================================================================================
@@ -90,13 +114,18 @@ function sendPost(contact, products) {
     });
 }
 
-// ProceedOrder : Récupère les données du formulaire et lance la requete au serveur
+// ProceedOrder : Récupère les données du formulaire, démarre le spinner et lance la requete au serveur
 function proceedOrder() {
   setmyContact();
 
   setmyIds();
-  console.log(myTabId);
+
+  // Démarre le spinner
+  startSpinner();
+
   sendPost(myContact, myTabId);
+
+  clearForm();
 }
 
 //====================================== Traitements =======================================================
@@ -107,9 +136,9 @@ myBasketBalance();
 // Affichage du panier
 displayBasket();
 
-// Traietement du bouton 'vider le panier'
+// Traitement du bouton 'vider le panier'
 document
-  .getElementById("emptyBasket")
+  .getElementById("emptyBasketConfirm")
   .addEventListener("click", treatEmptyBasket);
 
 // Traitement du bouton 'lancer la commande' sur visualisation panier

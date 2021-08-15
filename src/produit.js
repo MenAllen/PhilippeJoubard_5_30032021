@@ -16,7 +16,6 @@ function selectOptionVarnish(varnish) {
 
 // Initialisation de la variable globale myProduct avec les données de l'article lu
 function storeMyArticle(article) {
-  console.log(article);
   myProduct.id = article._id;
   myProduct.quantity = 1;
   myProduct.name = article.name;
@@ -75,7 +74,6 @@ readSingleArticle();
 const addArticleBasket = function () {
   // Récupération dans myProduct de l'option vernis sélectionnée
   myProduct.option = document.getElementById("option-vernis").value;
-  console.log(myProduct.option);
 
   // Ajout de l'article dans le panier ou incrémentation de la quantité si déjà existant
   if (!isInBasket()) {
@@ -84,8 +82,6 @@ const addArticleBasket = function () {
 
   // Update myBasket dans localstorage
   localStorage.setItem("furniture", JSON.stringify(myBasket));
-  console.log(localStorage);
-  console.log(myBasket.length);
 };
 
 // Ajout de l'article sélectionné dans le panier sur clic du bouton 'Ajouter au panier'
