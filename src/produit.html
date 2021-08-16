@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="FR">
   <head>
-    <!-- Required meta tags -->
+    <!-- meta tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,8 +52,11 @@
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item ml-2">
                   <a
                     class="nav-link active"
@@ -81,7 +84,7 @@
             <div class="spinner-border" style="width: 3rem; height: 3rem"></div>
           </div>
 
-          <!-- Error message when server not reachable-->
+          <!-- Message d'erreur si echec de communication avec le serveur -->
           <div
             id="errorDisplay"
             class="
@@ -93,17 +96,17 @@
             "
             role="alert"
           >
-            <i id="error__logo" class="fas fa-exclamation-triangle"></i>
+            <i class="fas fa-exclamation-triangle"></i>
             Server connection failure or page not found. check it out!
           </div>
 
-          <!-- Article Detailed Display -->
+          <!-- Article de l'Article selectionné -->
           <div class="card border bg-light shadow p-3 m-5 rounded">
             <div class="row">
               <div class="col-md-7">
                 <img
                   src="../img/logo.png"
-                  id="image-article"
+                  id="imageArticle"
                   class="img-fluid img-thumbnail p-1"
                   alt=""
                 />
@@ -112,23 +115,23 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6 mb-3">
-                      <h5 id="nom-article" class="card-title">-</h5>
+                      <h5 id="nomArticle" class="card-title">-</h5>
                     </div>
                     <div class="col-md-6 mb-3">
-                      <h5 id="prix-article" class="card-title text-right">-</h5>
+                      <h5 id="prixArticle" class="card-title text-right">-</h5>
                     </div>
-                    <p id="description-article" class="card-text mb-3"></p>
+                    <p id="descriptionArticle" class="card-text mb-3"></p>
                   </div>
                   <select
-                    id="option-vernis"
+                    id="optionVernis"
                     class="form-select form-select-mg mb-3"
                     aria-label="choix du vernis"
                   ></select>
                   <button
-                    id="AjoutPanier"
+                    id="ajoutPanier"
                     class="btn btn-secondary"
                     data-bs-toggle="modal"
-                    data-bs-target="#ModalAjoutPanier"
+                    data-bs-target="#modalAjoutPanier"
                   >
                     Ajouter au panier
                   </button>
@@ -139,15 +142,15 @@
         </div>
       </main>
 
-      <!-- Modal section renseigné et appelé suite au click Ajout Panier -->
-      <div class="modal fade" id="ModalAjoutPanier" tabindex="-1">
+      <!-- Popup Modal appelé suite au click Ajout Panier -->
+      <div class="modal fade" id="modalAjoutPanier" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Article ajouté</h5>
             </div>
             <div class="modal-body">
-              <p id="nom-article-modal"></p>
+              <p id="nomArticleModal"></p>
             </div>
             <div class="modal-footer">
               <a class="btn btn-secondary" href="panier.html"
@@ -165,24 +168,29 @@
       <footer class="bg-light py-1">
         <ul class="list-inline text-center p-1">
           <li class="list-inline-item">
-            <a href="../index.html" title="Accueil">Accueil</a>
+            <a class="h6 text-footer" href="../index.html" title="Accueil"
+              >Accueil</a
+            >
           </li>
           <li class="list-inline-item">
             <a
+              class="h6 text-footer"
               href="mailto:orinoco.oak@mail.com?subject=Contact"
               title="Contact"
               >Contact</a
             >
           </li>
           <li class="list-inline-item">
-            <a href="#" title="Mentions Légales">Mentions Légales</a>
+            <a class="h6 text-footer" href="#" title="Mentions Légales"
+              >Mentions Légales</a
+            >
           </li>
         </ul>
         <p class="copyright text-center">Orinoco © 2021</p>
       </footer>
     </div>
 
-    <!-- Requete Détail Article -->
+    <!-- Déclaration des fichiers Javascript -->
     <script src="functions.js"></script>
     <script src="produit.js"></script>
 

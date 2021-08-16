@@ -1,19 +1,22 @@
-// ===========================================================================================
+// ===================================== Variables Locales =================================================
 
-// Affichage Panier dans Header
-myBasketBalance();
+// Récupération de l'id du produit passé via l'appel depuis la page HTML
+let myParams = new URLSearchParams(location.search);
+let myId = myParams.get("_id");
 
-// ===========================================================================================
+// ====================================== Fonctions Locales ================================================
 
+//=============================================================
 // Affichage des options vernis du meuble, récupérées via l'API
 function selectOptionVarnish(varnish) {
   for (let choice of varnish) {
     document.getElementById(
-      "option-vernis"
+      "optionVernis"
     ).innerHTML += `<option value="${choice}">${choice}</option>`;
   }
 }
 
+//=================================================================================
 // Initialisation de la variable globale myProduct avec les données de l'article lu
 function storeMyArticle(article) {
   myProduct.id = article._id;
@@ -24,21 +27,20 @@ function storeMyArticle(article) {
   myProduct.imgurl = article.imageUrl;
 }
 
+//=================================================
 // Affichage de l'article dans la page produit.html
 function displaySingleArticle(article) {
-  document
-    .getElementById("image-article")
-    .setAttribute("src", article.imageUrl);
-  document.getElementById("image-article").setAttribute("alt", article.name);
+  document.getElementById("imageArticle").setAttribute("src", article.imageUrl);
+  document.getElementById("imageArticle").setAttribute("alt", article.name);
 
-  document.getElementById("nom-article").textContent = article.name;
-  document.getElementById("nom-article-modal").textContent =
+  document.getElementById("nomArticle").textContent = article.name;
+  document.getElementById("nomArticleModal").textContent =
     "L'article " + article.name + " a été ajouté dans votre panier";
 
-  document.getElementById("prix-article").textContent = formatPrice(
+  document.getElementById("prixArticle").textContent = formatPrice(
     article.price
   );
-  document.getElementById("description-article").textContent =
+  document.getElementById("descriptionArticle").textContent =
     article.description;
 
   selectOptionVarnish(article.varnish);
@@ -46,12 +48,7 @@ function displaySingleArticle(article) {
   storeMyArticle(article);
 }
 
-// ===========================================================================================
-
-// Récupération de l'id du produit passé via l'appel de la page HTML
-let myParams = new URLSearchParams(location.search);
-let myId = myParams.get("_id");
-
+//===========================
 // Get API sur Article unique
 function readSingleArticle() {
   fetch("http://localhost:3000/api/furniture/" + myId)
@@ -66,14 +63,11 @@ function readSingleArticle() {
     });
 }
 
-readSingleArticle();
-
-// ===========================================================================================
-
+//=======================================================
 // Fonction Ajout de l'article sélectionné dans le panier
 const addArticleBasket = function () {
   // Récupération dans myProduct de l'option vernis sélectionnée
-  myProduct.option = document.getElementById("option-vernis").value;
+  myProduct.option = document.getElementById("optionVernis").value;
 
   // Ajout de l'article dans le panier ou incrémentation de la quantité si déjà existant
   if (!isInBasket()) {
@@ -84,7 +78,15 @@ const addArticleBasket = function () {
   localStorage.setItem("furniture", JSON.stringify(myBasket));
 };
 
+// ======================================= Traitements ================================================
+
+// Affichage Panier dans Header
+myBasketBalance();
+
+// Get API sur Article unique
+readSingleArticle();
+
 // Ajout de l'article sélectionné dans le panier sur clic du bouton 'Ajouter au panier'
 document
-  .getElementById("AjoutPanier")
+  .getElementById("ajoutPanier")
   .addEventListener("click", addArticleBasket);

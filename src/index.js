@@ -1,11 +1,7 @@
-// ===========================================================================================
+// ======================================= Fonctions Locales ================================================
 
-// Affichage Panier dans Header
-myBasketBalance();
-
-// ===========================================================================================
-
-/* Affichage d'un Article */
+//=======================
+// Affichage d'un Article
 function displayArticle(article) {
   /* Template pour Display Card
     <div>
@@ -101,7 +97,8 @@ function displayArticle(article) {
   divCardBody.append(abtn);
 }
 
-/* Récupération des articles via API GET */
+//======================================
+// Récupération des articles via API GET
 function readAllArticles() {
   fetch("http://localhost:3000/api/furniture")
     .then((data) => data.json())
@@ -116,5 +113,10 @@ function readAllArticles() {
       console.log("Erreur Catch: " + err);
     });
 }
+// ===================================== Traitements ==================================================
 
+// Affichage Panier dans Header
+myBasketBalance();
+
+// Lecture Articles via API GET
 readAllArticles();

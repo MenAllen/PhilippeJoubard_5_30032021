@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="FR">
   <head>
-    <!-- Required meta tags -->
+    <!-- meta tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,8 +60,11 @@
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item ml-2">
                   <a class="nav-link active" aria-current="page" href="#"
                     >Accueil</a
@@ -84,6 +87,7 @@
       <!-- MAIN -->
       <main>
         <div class="container-fluid bg-oak">
+          <!-- Annonce Commerciale -->
           <div class="mt-4 bg-transparent">
             <h1 class="text-center text-ori">
               Des meubles conçus pour vous accompagner longtemps
@@ -95,7 +99,7 @@
             <div class="spinner-border" style="width: 3rem; height: 3rem"></div>
           </div>
 
-          <!-- Error message when server not reachable-->
+          <!-- Message d'erreur si echec de communication avec le serveur -->
           <div
             id="errorDisplay"
             class="alert alert-danger text-center invisible align-self-center"
@@ -105,7 +109,7 @@
             Server connection failure or page not found. check it out !
           </div>
 
-          <!-- Articles Display -->
+          <!-- Affichage des Articles -->
           <div class="row mx-4 mb-5" id="liste">
             <!-- Template Article HTML -> index.js -->
           </div>
@@ -116,24 +120,27 @@
       <footer class="bg-light py-1">
         <ul class="list-inline text-center p-1">
           <li class="list-inline-item">
-            <a href="#" title="Accueil">Accueil</a>
+            <a class="h6 text-footer" href="#" title="Accueil">Accueil</a>
           </li>
           <li class="list-inline-item">
             <a
+              class="h6 text-footer"
               href="mailto:orinoco.oak@mail.com?subject=Contact"
               title="Contact"
               >Contact</a
             >
           </li>
           <li class="list-inline-item">
-            <a href="#" title="Mentions Légales">Mentions Légales</a>
+            <a class="h6 text-footer" href="#" title="Mentions Légales"
+              >Mentions Légales</a
+            >
           </li>
         </ul>
         <p class="copyright text-center">Orinoco © 2021</p>
       </footer>
     </div>
 
-    <!-- Requete des produits via API furniture / Lecture Panier -->
+    <!-- Déclaration des fichiers Javascript -->
     <script src="./src/functions.js"></script>
     <script src="./src/index.js"></script>
 

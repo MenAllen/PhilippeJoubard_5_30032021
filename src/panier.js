@@ -1,6 +1,6 @@
 //================================== Fonctions Locales =========================================
 
-//============================================================================================
+//=======================================================================================
 //displayBasket signale si le panier est vide , sinon affiche tous les éléments du panier
 function displayBasket() {
   let fullList = true;
@@ -31,14 +31,14 @@ function displayBasket() {
   }
 }
 
-//============================================================================================
+//===========================================================================
 // treatEmptyBasket reinitialise le panier,et redirige vers la page d'accueil
 function treatEmptyBasket() {
   clearBasket();
   window.location.href = "../index.html";
 }
 
-//========================================================================================
+//========================================================
 // displayForm affiche le formulaire de commande à remplir
 function displayForm() {
   // Afficher le formulaire si le panier n'est pas vide
@@ -53,8 +53,8 @@ function displayForm() {
   window.location.href = "#displayFormulaire";
 }
 
-//========================================================================================
-// clearForm amasque le formulaire de commande et affiche les boutons
+//===================================================================
+// clearForm masque le formulaire de commande et affiche les boutons
 function clearForm() {
   let eltForm = document.getElementById("displayFormulaire");
   eltForm.classList.add("d-none");
@@ -62,7 +62,7 @@ function clearForm() {
   eltBtn.classList.remove("d-none");
 }
 
-//========================================================================================
+//====================================================
 // initialise myContact avec les valeurs du formulaire
 function setmyContact() {
   //
@@ -73,12 +73,15 @@ function setmyContact() {
   myContact.city = document.getElementById("city").value;
 }
 
+//==========================================
 // Initialise myTabId avec les Ids du panier
 function setmyIds() {
   myTabId = [];
 
   for (let element of myBasket) {
     let nbrelts = element.quantity;
+
+    // Si plusieurs éléments, on insert autant de fois l'ID
     while (nbrelts > 0) {
       myTabId.push(element.id);
       nbrelts--;
@@ -86,7 +89,8 @@ function setmyIds() {
   }
 }
 
-// Envoie les informatiosn contact et Ids sur l'API
+//=================================================
+// Envoie (POST) les informatiosn contact et Ids sur l'API
 function sendPost(contact, products) {
   fetch("http://localhost:3000/api/furniture/order", {
     headers: {
@@ -114,13 +118,14 @@ function sendPost(contact, products) {
     });
 }
 
-// ProceedOrder : Récupère les données du formulaire, démarre le spinner et lance la requete au serveur
+//======================================================================================================
+// ProceedOrder :
+// Récupère les données du formulaire, labce le spinner puis la requete au serveur. Masque le formulaire
 function proceedOrder() {
   setmyContact();
 
   setmyIds();
 
-  // Démarre le spinner
   startSpinner();
 
   sendPost(myContact, myTabId);

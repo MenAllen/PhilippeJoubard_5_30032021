@@ -10,7 +10,7 @@ class Contact {
     this.email = email;
   }
 }
-// * products: [string] <-- array of product _id
+// Type products: [string] <-- array of product _id à partir de la definition du Backend
 
 // Class Product pour éléments stockés dans le panier
 class Product {
@@ -34,20 +34,21 @@ let myBasketPrice = 0;
 
 //========================================== Fonctions Globales =======================================
 
+//==================
 // Arrête le spinner
 function stopSpinner() {
-  console.log("stopSpinner");
   let elt = document.getElementById("spinner");
   elt.classList.add("d-none");
 }
 
+//===================
 // Démarre le spinner
 function startSpinner() {
-  console.log("startSpinner");
   let elt = document.getElementById("spinner");
   elt.classList.remove("d-none");
 }
 
+//=============================================================================
 // Affiche un message d'erreur suite à un fetch / catch puis arrête le spinner
 function displayErrorMessage(err) {
   let elt = document.getElementById("errorDisplay");
@@ -58,6 +59,7 @@ function displayErrorMessage(err) {
   stopSpinner();
 }
 
+//===============================================================================
 // Efface le message d'erreur suite à un fetch / response puis arrête le spinner
 function clearErrorMessage() {
   let elt = document.getElementById("errorDisplay");
@@ -67,7 +69,8 @@ function clearErrorMessage() {
   stopSpinner();
 }
 
-//Calcul du nombre d'articles dans le panier et Affichage dans le header de chaque page
+//=====================================================================================
+//Calcule le nombre d'articles dans le panier et l'affiche dans le header de chaque page
 function myBasketBalance() {
   let totalArticles = 0;
 
@@ -81,6 +84,7 @@ function myBasketBalance() {
   }
 }
 
+//======================================================================================
 // clearBasket provoque la remise à zéro du panier et la mise à jour des affichages page
 function clearBasket() {
   myBasket = [];
@@ -88,20 +92,19 @@ function clearBasket() {
   myBasketBalance();
 }
 
+//===============================================================================
 // incrémente de 1 la quantité de l'element dans le panier dont l'index est donné
 function incrementInBasket(index) {
   ++myBasket[index].quantity;
-  console.log(myBasket);
   localStorage.setItem("furniture", JSON.stringify(myBasket));
 }
 
+//=====================================================================
 // Teste si l'article myProduct est déjà inclus dans le panier myBasket
 //  en cherchant le nom et l'option vernis
 //      - return true si présent
-//      - return false et increment l'index trouvé sinon
+//      - return false et incremente l'index trouvé sinon
 function isInBasket() {
-  console.log(myBasket);
-
   for (element of myBasket) {
     switch (myProduct.name) {
       case element.name:
@@ -116,14 +119,14 @@ function isInBasket() {
   return false;
 }
 
-//========================================================================================
-
+//======================================================
 // addInBasket ajoute l'élément myProduct dans le panier
 function addInBasket() {
   myBasket.push(myProduct);
   localStorage.setItem("furniture", JSON.stringify(myBasket));
 }
 
+//==============================================
 // Formatage du prix pour afficher "x xxx,xx €"
 function formatPrice(price) {
   return new Intl.NumberFormat("fr-FR", {
@@ -132,6 +135,7 @@ function formatPrice(price) {
   }).format(price / 100);
 }
 
+//==============================================
 // Retourne la date du jour au format dd/mm/yyyy
 function getDateToday() {
   let date = new Date();
@@ -144,13 +148,13 @@ function getDateToday() {
   );
 }
 
-// ===========================================================================================
-
+// ================================================================================
+// Affiche la liste panier (fullList = true) ou la liste commande (fullList = false)
 function displaySingleProduct(element, fullList) {
   // Positionnement dans le HTML: tbody
-  let b = document.getElementById("basketlist");
+  let b = document.getElementById("basketList");
 
-  // Creation de la ligne enfant de basketlist
+  // Creation de la ligne enfant de basketList
   let newLine = document.createElement("tr");
   newLine.classList.add("text-center");
   b.append(newLine);
@@ -179,6 +183,9 @@ function displaySingleProduct(element, fullList) {
     tdOption.classList.add("align-middle");
     tdOption.textContent = element.option;
     newLine.append(tdOption);
+  } else {
+    // Pour la commande, on associe l'option dans le champ name
+    tdName.innerHTML += `<br>(${element.option})`;
   }
 
   // Champ quantité

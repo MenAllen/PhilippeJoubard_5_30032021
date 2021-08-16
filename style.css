@@ -12,3 +12,9 @@
   font-family: "Permanent Marker", cursive;
   font-size: 55px;
 }
+
+/* format de texte du menu footer */
+.text-footer {
+  color: initial;
+  text-decoration: none;
+}
