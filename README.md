@@ -43,3 +43,4 @@ _ The order page lists the products ordered =, their quantity and the sub-total 
 
 ## Improvments & suggested add-ons
 - Adding quantity info for each product in the product order data would simplify and fluidify the exchange between front and backend
+- Some images on server side need to be compressed: for example, oak_5.jpg is 4712Ko

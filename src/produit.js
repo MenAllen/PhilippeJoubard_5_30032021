@@ -106,9 +106,6 @@ function addArticleBasket() {
 // Affichage Panier dans Header
 myBasketBalance();
 
-// Bouton ajouter au panier désactivé tant que l'article n'est pas reçu
-document.getElementById("ajoutPanier").setAttribute("disabled", "");
-
 // Get API sur Article unique
 readSingleArticle();
 
