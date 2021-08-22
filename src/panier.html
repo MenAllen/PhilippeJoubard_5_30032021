@@ -191,7 +191,7 @@
                   class="form-control"
                   maxlength="40"
                   title="2 chaines de caractères max, chiffres exclus, total 40 caractères max"
-                  pattern="(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))"
+                  pattern="(([a-zA-ZÀ-ÿ',.]+[\s\-]{1}[a-zA-ZÀ-ÿ',.]+)|([a-zA-ZÀ-ÿ',.]+))"
                   required
                 />
               </div>
@@ -203,7 +203,7 @@
                   class="form-control"
                   maxlength="40"
                   title="2 chaines de caractères max, chiffres exclus, total 40 caractères max"
-                  pattern="(([a-zA-ZÀ-ÿ',]+[\s\-]{1}[a-zA-ZÀ-ÿ',]+)|([a-zA-ZÀ-ÿ',]+))"
+                  pattern="(([a-zA-ZÀ-ÿ',.]+[\s\-]{1}[a-zA-ZÀ-ÿ',.]+)|([a-zA-ZÀ-ÿ',.]+))"
                   required
                 />
               </div>
@@ -228,7 +228,7 @@
                   type="text"
                   id="address"
                   title="80 caractères max"
-                  pattern="[A-Za-zÀ-ÿ0-9-',\s]{1,80}"
+                  pattern="[A-Za-zÀ-ÿ0-9-',.\s]{1,80}"
                   class="form-control"
                   required
                 />
@@ -240,6 +240,7 @@
                   id="city"
                   maxlength="40"
                   title="40 caractères max"
+                  pattern="[A-Za-zÀ-ÿ0-9-',.\s]{1,40}"
                   class="form-control"
                   required
                 />
