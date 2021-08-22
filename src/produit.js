@@ -46,6 +46,9 @@ function displaySingleArticle(article) {
   selectOptionVarnish(article.varnish);
 
   storeMyArticle(article);
+
+  // L'article est reçu: on active le bouton "ajouter au panier"
+  document.getElementById("ajoutPanier").removeAttribute("disabled");
 }
 
 //===========================
@@ -102,6 +105,9 @@ function addArticleBasket() {
 
 // Affichage Panier dans Header
 myBasketBalance();
+
+// Bouton ajouter au panier désactivé tant que l'article n'est pas reçu
+document.getElementById("ajoutPanier").setAttribute("disabled", "");
 
 // Get API sur Article unique
 readSingleArticle();
