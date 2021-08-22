@@ -6,14 +6,14 @@ function displayProducts() {
   let fullList = false;
 
   for (product of myBasket) {
-    displaySingleProduct(product, fullList);
+    displaySelectedArticle(product, fullList);
   }
 
   for (product of orderData.products) {
     totalOrderPrice += product.price;
   }
 
-  displayBasketPrice(totalOrderPrice);
+  displayPrice(totalOrderPrice);
 }
 
 //====================================== Traitements =======================================================

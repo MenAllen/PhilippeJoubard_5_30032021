@@ -13,11 +13,11 @@ function displayBasket() {
   if (myBasket.length > 0) {
     // Affichage de chaque element
     for (product of myBasket) {
-      displaySingleProduct(product, fullList);
+      displaySelectedArticle(product, fullList);
     }
 
     // Affichage du prix total
-    displayBasketPrice(myBasketPrice);
+    displayPrice(myBasketPrice);
 
     // On n'affiche pas 'panier vide'
     elt.classList.add("d-none");
@@ -33,7 +33,7 @@ function displayBasket() {
 
 //===========================================================================
 // treatEmptyBasket reinitialise le panier,et redirige vers la page d'accueil
-function treatEmptyBasket() {
+function validateEmptyBasket() {
   clearBasket();
   window.location.href = "../index.html";
 }
@@ -49,17 +49,18 @@ function displayForm() {
     let eltBtn = document.getElementById("hideButton");
     eltBtn.classList.add("d-none");
   }
-  // Recentrage du formulaire
+  // Recentrage du formulaire sur l'écran
   window.location.href = "#displayFormulaire";
 }
 
-//===================================================================
-// clearForm masque le formulaire de commande et affiche les boutons
-function clearForm() {
+//==========================================================================================
+// hideForm masque le formulaire de commande, affiche les boutons et remonte en haut de page
+function hideForm() {
   let eltForm = document.getElementById("displayFormulaire");
   eltForm.classList.add("d-none");
   let eltBtn = document.getElementById("hideButton");
   eltBtn.classList.remove("d-none");
+  window.location.href = "#toppage";
 }
 
 //====================================================
@@ -120,7 +121,7 @@ function sendPost(contact, products) {
 
 //======================================================================================================
 // ProceedOrder :
-// Récupère les données du formulaire, labce le spinner puis la requete au serveur. Masque le formulaire
+// Récupère les données du formulaire, lance le spinner puis la requete au serveur. Masque le formulaire
 function proceedOrder() {
   setmyContact();
 
@@ -130,7 +131,7 @@ function proceedOrder() {
 
   sendPost(myContact, myTabId);
 
-  clearForm();
+  hideForm();
 }
 
 //====================================== Traitements =======================================================
@@ -144,7 +145,7 @@ displayBasket();
 // Traitement du bouton 'vider le panier'
 document
   .getElementById("emptyBasketConfirm")
-  .addEventListener("click", treatEmptyBasket);
+  .addEventListener("click", validateEmptyBasket);
 
 // Traitement du bouton 'lancer la commande' sur visualisation panier
 document.getElementById("launchOrder").addEventListener("click", displayForm);

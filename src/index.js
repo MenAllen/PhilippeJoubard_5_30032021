@@ -2,7 +2,7 @@
 
 //=======================
 // Affichage d'un Article
-function displayArticle(article) {
+function displayReceivedArticle(article) {
   /* Template pour Display Card
     <div>
         <div>
@@ -98,13 +98,13 @@ function displayArticle(article) {
 }
 
 //======================================
-// Récupération des articles via API GET
+// Récupére tous les articles via API GET
 function readAllArticles() {
   fetch("http://localhost:3000/api/furniture")
     .then((data) => data.json())
     .then((jsonListArticle) => {
       for (let jsonArticle of jsonListArticle) {
-        displayArticle(jsonArticle);
+        displayReceivedArticle(jsonArticle);
       }
       clearErrorMessage();
     })

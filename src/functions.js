@@ -1,6 +1,7 @@
 //===================================== Types et Variables Globales ============================================
 
 // Class contact à partir de la definition du Backend pour furniture
+
 class Contact {
   constructor(firstName, lastName, address, city, email) {
     this.firstName = firstName;
@@ -13,6 +14,7 @@ class Contact {
 // Type products: [string] <-- array of product _id à partir de la definition du Backend
 
 // Class Product pour éléments stockés dans le panier
+
 class Product {
   constructor(id, name, description, price, option, quantity, imgurl) {
     this.id = id;
@@ -26,16 +28,18 @@ class Product {
 }
 
 //Variables Globales
-let myBasket = JSON.parse(localStorage.getItem("furniture")) || [];
-let myProduct = new Product();
-let myContact = new Contact();
-let myTabId = [];
-let myBasketPrice = 0;
+
+let myBasket = JSON.parse(localStorage.getItem("furniture")) || []; // Mon panier
+let myProduct = new Product(); // Le produit sélectionné
+let myContact = new Contact(); // Le contact transmis dans le formulaire
+let myTabId = []; // La liste des Ids objets de la commande
+let myBasketPrice = 0; // Le prix total du panier
 
 //========================================== Fonctions Globales =======================================
 
 //==================
 // Arrête le spinner
+
 function stopSpinner() {
   let elt = document.getElementById("spinner");
   elt.classList.add("d-none");
@@ -43,6 +47,7 @@ function stopSpinner() {
 
 //===================
 // Démarre le spinner
+
 function startSpinner() {
   let elt = document.getElementById("spinner");
   elt.classList.remove("d-none");
@@ -50,6 +55,7 @@ function startSpinner() {
 
 //=============================================================================
 // Affiche un message d'erreur suite à un fetch / catch puis arrête le spinner
+
 function displayErrorMessage(err) {
   let elt = document.getElementById("errorDisplay");
   elt.textContent += " (" + err + ")";
@@ -61,6 +67,7 @@ function displayErrorMessage(err) {
 
 //===============================================================================
 // Efface le message d'erreur suite à un fetch / response puis arrête le spinner
+
 function clearErrorMessage() {
   let elt = document.getElementById("errorDisplay");
   elt.classList.remove("visible");
@@ -71,63 +78,40 @@ function clearErrorMessage() {
 
 //=====================================================================================
 //Calcule le nombre d'articles dans le panier et l'affiche dans le header de chaque page
+
 function myBasketBalance() {
   let totalArticles = 0;
+  let element = document.getElementById("myBasketBalance");
 
   for (product of myBasket) {
     totalArticles += product.quantity;
   }
 
-  if (totalArticles > 0) {
-    let element = document.getElementById("myBasketBalance");
-    element.innerHTML = `Panier <span class="badge badge-light bg-secondary align-top">${totalArticles}</span>`;
-  }
+  totalArticles > 0
+    ? (element.innerHTML = `Panier <span class="badge badge-light bg-secondary align-top">${totalArticles}</span>`)
+    : (element.innerHTML = `Panier`);
 }
 
 //======================================================================================
 // clearBasket provoque la remise à zéro du panier et la mise à jour des affichages page
+
 function clearBasket() {
   myBasket = [];
-  localStorage.setItem("furniture", JSON.stringify(myBasket));
+  localStorage.clear();
   myBasketBalance();
 }
 
 //===============================================================================
 // incrémente de 1 la quantité de l'element dans le panier dont l'index est donné
+
 function incrementInBasket(index) {
   ++myBasket[index].quantity;
   localStorage.setItem("furniture", JSON.stringify(myBasket));
 }
 
-//=====================================================================
-// Teste si l'article myProduct est déjà inclus dans le panier myBasket
-//  en cherchant le nom et l'option vernis
-//      - return true si présent
-//      - return false et incremente l'index trouvé sinon
-function isInBasket() {
-  for (element of myBasket) {
-    switch (myProduct.name) {
-      case element.name:
-        switch (myProduct.option) {
-          case element.option: {
-            incrementInBasket(myBasket.indexOf(element));
-            return true;
-          }
-        }
-    }
-  }
-  return false;
-}
-
-//======================================================
-// addInBasket ajoute l'élément myProduct dans le panier
-function addInBasket() {
-  myBasket.push(myProduct);
-  localStorage.setItem("furniture", JSON.stringify(myBasket));
-}
-
 //==============================================
 // Formatage du prix pour afficher "x xxx,xx €"
+
 function formatPrice(price) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
@@ -137,6 +121,7 @@ function formatPrice(price) {
 
 //==============================================
 // Retourne la date du jour au format dd/mm/yyyy
+
 function getDateToday() {
   let date = new Date();
   return (
@@ -149,8 +134,11 @@ function getDateToday() {
 }
 
 // ================================================================================
-// Affiche la liste panier (fullList = true) ou la liste commande (fullList = false)
-function displaySingleProduct(element, fullList) {
+// Affiche un élément sélectionné du panier:
+//    si fullList = true, tous les champs sont affichés (affichage panier)
+//    si fullList = false, tous sauf option et prix unitaire (affichage commande)
+
+function displaySelectedArticle(element, fullList) {
   // Positionnement dans le HTML: tbody
   let b = document.getElementById("basketList");
 
@@ -171,21 +159,36 @@ function displaySingleProduct(element, fullList) {
   image.setAttribute("alt", element.name);
   tdProduit.append(image);
 
-  // Champ nom
-  let tdName = document.createElement("td");
-  tdName.classList.add("align-middle");
-  tdName.textContent = element.name;
-  newLine.append(tdName);
-
   if (fullList) {
+    // Name et Option ont chacun leur colonne
+
+    // Champ nom
+    let tdName = document.createElement("td");
+    tdName.classList.add("align-middle");
+    tdName.textContent = element.name;
+    newLine.append(tdName);
+
     // Champ option vernis
     let tdOption = document.createElement("td");
     tdOption.classList.add("align-middle");
     tdOption.textContent = element.option;
     newLine.append(tdOption);
   } else {
-    // Pour la commande, on associe l'option dans le champ name
-    tdName.innerHTML += `<br>(${element.option})`;
+    // Name et Option sont dans la même colonne
+
+    let tdName = document.createElement("td");
+    tdName.classList.add("align-middle");
+    newLine.append(tdName);
+
+    // Champ nom
+    let tdPar1 = document.createElement("p");
+    tdPar1.textContent = element.name;
+    tdName.append(tdPar1);
+
+    // Champ option
+    let tdPar2 = document.createElement("p");
+    tdPar2.textContent = "( " + element.option + " )";
+    tdName.append(tdPar2);
   }
 
   // Champ quantité
@@ -195,7 +198,7 @@ function displaySingleProduct(element, fullList) {
   newLine.append(tdQuantity);
 
   if (fullList) {
-    // Champ prix
+    // Champ prix élément pour le panier seulement
     let tdPrice = document.createElement("td");
     tdPrice.classList.add("align-middle");
     tdPrice.textContent = formatPrice(element.price);
@@ -212,8 +215,10 @@ function displaySingleProduct(element, fullList) {
   myBasketPrice += element.quantity * element.price;
 }
 
-// Affichage du prix de la commande / du panier
-function displayBasketPrice(price) {
+// =========================================================================
+// Affichage du prix. Utilisé pour le prix total de la commande et du panier
+
+function displayPrice(price) {
   let elt = document.getElementById("orderPrice");
   elt.textContent = formatPrice(price);
 }

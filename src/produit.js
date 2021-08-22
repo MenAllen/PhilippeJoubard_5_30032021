@@ -7,7 +7,7 @@ let myId = myParams.get("_id");
 // ====================================== Fonctions Locales ================================================
 
 //=============================================================
-// Affichage des options vernis du meuble, récupérées via l'API
+// Affiche les options vernis du meuble, récupérées via l'API
 function selectOptionVarnish(varnish) {
   for (let choice of varnish) {
     document.getElementById(
@@ -16,8 +16,8 @@ function selectOptionVarnish(varnish) {
   }
 }
 
-//=================================================================================
-// Initialisation de la variable globale myProduct avec les données de l'article lu
+//==========================================================================
+// Initialise la variable globale myProduct avec les données de l'article lu
 function storeMyArticle(article) {
   myProduct.id = article._id;
   myProduct.quantity = 1;
@@ -28,7 +28,7 @@ function storeMyArticle(article) {
 }
 
 //=================================================
-// Affichage de l'article dans la page produit.html
+// Affiche l'article lu dans la page produit.html
 function displaySingleArticle(article) {
   document.getElementById("imageArticle").setAttribute("src", article.imageUrl);
   document.getElementById("imageArticle").setAttribute("alt", article.name);
@@ -63,20 +63,40 @@ function readSingleArticle() {
     });
 }
 
+//=====================================================================
+// Teste si l'article myProduct est déjà inclus dans le panier myBasket
+//  en cherchant le nom et l'option vernis
+//      - return true si présent, et incrémente la quantité
+//      - return false sinon
+function isInBasket() {
+  for (element of myBasket) {
+    if (
+      myProduct.name === element.name &&
+      myProduct.option === element.option
+    ) {
+      incrementInBasket(myBasket.indexOf(element));
+
+      return true;
+    }
+
+    return false;
+  }
+}
+
 //=======================================================
 // Fonction Ajout de l'article sélectionné dans le panier
-const addArticleBasket = function () {
+function addArticleBasket() {
   // Récupération dans myProduct de l'option vernis sélectionnée
   myProduct.option = document.getElementById("optionVernis").value;
 
   // Ajout de l'article dans le panier ou incrémentation de la quantité si déjà existant
   if (!isInBasket()) {
-    addInBasket();
+    myBasket.push(myProduct);
   }
 
   // Update myBasket dans localstorage
   localStorage.setItem("furniture", JSON.stringify(myBasket));
-};
+}
 
 // ======================================= Traitements ================================================
 
