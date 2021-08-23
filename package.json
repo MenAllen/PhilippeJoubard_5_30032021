@@ -1,6 +1,7 @@
 {
   "name": "p5local",
   "version": "1.0.0",
+  "private": true,
   "description": "P5-OC",
   "main": "index.js",
   "scripts": {
