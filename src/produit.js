@@ -72,6 +72,8 @@ function readSingleArticle() {
 //      - return true si présent, et incrémente la quantité
 //      - return false sinon
 function isInBasket() {
+  console.log(myBasket);
+  console.log(myProduct);
   for (element of myBasket) {
     if (
       myProduct.name === element.name &&
@@ -81,9 +83,8 @@ function isInBasket() {
 
       return true;
     }
-
-    return false;
   }
+  return false;
 }
 
 //=======================================================
