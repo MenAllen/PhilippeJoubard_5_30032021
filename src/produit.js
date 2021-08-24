@@ -54,7 +54,7 @@ function displaySingleArticle(article) {
 //===========================
 // Get API sur Article unique
 function readSingleArticle() {
-  fetch("http://localhost:3000/api/furniture/" + myId)
+  fetch(urlAPI + myId)
     .then((data) => data.json())
     .then((jsonSingleArticle) => {
       displaySingleArticle(jsonSingleArticle);

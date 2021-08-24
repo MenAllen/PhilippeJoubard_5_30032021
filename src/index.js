@@ -27,7 +27,7 @@ function displayReceivedArticle(article) {
 
   /* Creation d'un div enfant de liste */
   let divColonne = document.createElement("div");
-  divColonne.classList.add("col-12", "col-md-6", "pb-3");
+  divColonne.classList.add("col-10", "col-md-5", "pb-3");
   b.append(divColonne);
 
   /* Creation du div card enfant */
@@ -100,7 +100,7 @@ function displayReceivedArticle(article) {
 //======================================
 // Récupére tous les articles via API GET
 function readAllArticles() {
-  fetch("http://localhost:3000/api/furniture")
+  fetch(urlAPI)
     .then((data) => data.json())
     .then((jsonListArticle) => {
       for (let jsonArticle of jsonListArticle) {

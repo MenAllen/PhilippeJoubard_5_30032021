@@ -93,7 +93,7 @@ function setmyIds() {
 //=================================================
 // Envoie (POST) les informatiosn contact et Ids sur l'API
 function sendPost(contact, products) {
-  fetch("http://localhost:3000/api/furniture/order", {
+  fetch(urlAPI + "order", {
     headers: {
       "Content-Type": "application/json",
     },

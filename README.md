@@ -7,7 +7,7 @@ Goal, as a front-end developer working for ORINOCO company, is to develop a fron
 - manage events with Javascript
 
 ## !! IMPORTANT !!
-- This repo only includes front-end application
+- This repo only includes frontend application
 - Backend application is available from Orinoco github repository: 
 
 			https://github.com/OpenClassrooms-Student-Center/JWDP5
@@ -20,6 +20,8 @@ Goal, as a front-end developer working for ORINOCO company, is to develop a fron
 			The server should run on localhost with default port 3000.
 			If the server runs on another port for any reason, this is printed to the console when the server starts,
 			e.g. Listening on port 3001.
+- For frontend application, just clone the repo https://github.com/MenAllen/PhilippeJoubard_5_30032021.git and launch index.html
+- In case any update is required on url API, just edit function.js look for and modify urlAPI
 
 ## General Architecture
 Web application is made of four HTML pages

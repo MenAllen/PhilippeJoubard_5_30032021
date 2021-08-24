@@ -27,8 +27,9 @@ class Product {
   }
 }
 
-//Variables Globales
+//Constante et Variables Globales
 
+const urlAPI = "http://localhost:3000/api/furniture/";
 let myBasket = JSON.parse(localStorage.getItem("furniture")) || []; // Mon panier
 let myProduct = new Product(); // Le produit sélectionné
 let myContact = new Contact(); // Le contact transmis dans le formulaire
