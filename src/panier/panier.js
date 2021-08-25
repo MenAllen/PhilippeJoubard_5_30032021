@@ -35,7 +35,7 @@ function displayBasket() {
 // treatEmptyBasket reinitialise le panier,et redirige vers la page d'accueil
 function validateEmptyBasket() {
   clearBasket();
-  window.location.href = "../index.html";
+  window.location.href = "../../index.html";
 }
 
 //========================================================
@@ -100,17 +100,17 @@ function sendPost(contact, products) {
     method: "POST",
     body: JSON.stringify({ contact, products }),
   })
-    .then((data) => data.json())
+    .then((response) => response.json())
 
-    .then((jsonresponse) => {
+    .then((data) => {
       // enregistrement des données reçues dans localstorage
-      localStorage.setItem("order", JSON.stringify(jsonresponse));
+      localStorage.setItem("order", JSON.stringify(data));
 
       // clean-up du message d'erreur eventuel
       clearErrorMessage();
 
       // redirection vers la page order
-      window.location.href = "order.html";
+      window.location.href = "../order/order.html";
     })
 
     .catch(function (err) {

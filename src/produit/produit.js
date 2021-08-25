@@ -55,7 +55,7 @@ function displaySingleArticle(article) {
 // Get API sur Article unique
 function readSingleArticle() {
   fetch(urlAPI + myId)
-    .then((data) => data.json())
+    .then((response) => response.json())
     .then((jsonSingleArticle) => {
       displaySingleArticle(jsonSingleArticle);
       clearErrorMessage();

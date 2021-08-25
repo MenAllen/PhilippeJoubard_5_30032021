@@ -91,7 +91,7 @@ function displayReceivedArticle(article) {
   /* Creation de l'ancre du bouton */
   let abtn = document.createElement("a");
   abtn.classList.add("btn", "btn-secondary", "stretched-link");
-  abtn.setAttribute("href", "./src/produit.html?_id=" + article._id);
+  abtn.setAttribute("href", "./src/produit/produit.html?_id=" + article._id);
   abtn.setAttribute("alt", article.name);
   abtn.textContent = "Voir cet article";
   divCardBody.append(abtn);
@@ -101,7 +101,7 @@ function displayReceivedArticle(article) {
 // Récupére tous les articles via API GET
 function readAllArticles() {
   fetch(urlAPI)
-    .then((data) => data.json())
+    .then((response) => response.json())
     .then((jsonListArticle) => {
       for (let jsonArticle of jsonListArticle) {
         displayReceivedArticle(jsonArticle);

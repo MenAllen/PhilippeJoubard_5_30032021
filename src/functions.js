@@ -30,6 +30,7 @@ class Product {
 //Constante et Variables Globales
 
 const urlAPI = "http://localhost:3000/api/furniture/";
+
 let myBasket = JSON.parse(localStorage.getItem("furniture")) || []; // Mon panier
 let myProduct = new Product(); // Le produit sélectionné
 let myContact = new Contact(); // Le contact transmis dans le formulaire
@@ -60,8 +61,7 @@ function startSpinner() {
 function displayErrorMessage(err) {
   let elt = document.getElementById("errorDisplay");
   elt.textContent += " (" + err + ")";
-  elt.classList.remove("invisible");
-  elt.classList.add("visible");
+  elt.classList.remove("d-none");
 
   stopSpinner();
 }
@@ -71,8 +71,7 @@ function displayErrorMessage(err) {
 
 function clearErrorMessage() {
   let elt = document.getElementById("errorDisplay");
-  elt.classList.remove("visible");
-  elt.classList.add("invisible");
+  elt.classList.add("d-none");
 
   stopSpinner();
 }

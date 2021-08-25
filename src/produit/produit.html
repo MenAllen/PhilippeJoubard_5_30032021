@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="ORINOCO Selection de meuble en chêne" />
+
     <!-- Icônes Fontawesome -->
     <script
       src="https://kit.fontawesome.com/6beed07ec0.js"
@@ -13,9 +17,9 @@
     ></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../../style.css" />
 
-    <title>ORINOCO - Votre Article</title>
+    <title>ORINOCO - Mon Article sélectionné</title>
 
     <!-- Boostrap 502 CSS -->
     <link
@@ -35,7 +39,7 @@
           <div class="container-fluid">
             <a class="navbar-brand" href="#"
               ><img
-                src="../img/logo.png"
+                src="../../img/logo.png"
                 alt="orinoco logo"
                 width="322"
                 height="90"
@@ -61,12 +65,15 @@
                   <a
                     class="nav-link active"
                     aria-current="page"
-                    href="../index.html"
+                    href="../../index.html"
                     >Accueil</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a id="myBasketBalance" class="nav-link" href="panier.html"
+                  <a
+                    id="myBasketBalance"
+                    class="nav-link"
+                    href="../panier/panier.html"
                     >Panier</a
                   >
                 </li>
@@ -87,13 +94,7 @@
           <!-- Message d'erreur si echec de communication avec le serveur -->
           <div
             id="errorDisplay"
-            class="
-              alert alert-danger
-              text-center
-              invisible
-              align-self-center
-              mt-3
-            "
+            class="alert alert-danger text-center d-none align-self-center mt-3"
             role="alert"
           >
             <i class="fas fa-exclamation-triangle"></i>
@@ -105,7 +106,7 @@
             <div class="row">
               <div class="col-md-7">
                 <img
-                  src="../img/logo.png"
+                  src="../../img/logo.png"
                   id="imageArticle"
                   class="img-fluid img-thumbnail p-1"
                   alt=""
@@ -156,10 +157,10 @@
               <p id="nomArticleModal"></p>
             </div>
             <div class="modal-footer">
-              <a class="btn btn-secondary" href="panier.html"
+              <a class="btn btn-secondary" href="../panier/panier.html"
                 >Voir mon panier</a
               >
-              <a class="btn btn-success" href="../index.html"
+              <a class="btn btn-success" href="../../index.html"
                 >Continuer les achats</a
               >
             </div>
@@ -171,7 +172,7 @@
       <footer class="bg-light py-1">
         <ul class="list-inline text-center p-1">
           <li class="list-inline-item">
-            <a class="h6 text-footer" href="../index.html" title="Accueil"
+            <a class="h6 text-footer" href="../../index.html" title="Accueil"
               >Accueil</a
             >
           </li>
@@ -194,7 +195,7 @@
     </div>
 
     <!-- Déclaration des fichiers Javascript -->
-    <script src="functions.js"></script>
+    <script src="../functions.js"></script>
     <script src="produit.js"></script>
 
     <!-- Boostrap 502 JS : Bundle script including Popper -->
