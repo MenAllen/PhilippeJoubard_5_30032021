@@ -21,7 +21,7 @@ Goal, as a front-end developer working for ORINOCO company, is to develop a fron
 			If the server runs on another port for any reason, this is printed to the console when the server starts,
 			e.g. Listening on port 3001.
 - For frontend application, just clone the repo https://github.com/MenAllen/PhilippeJoubard_5_30032021.git and launch index.html
-- In case any update is required on url API, just edit function.js look for and modify urlAPI
+- In case any update is required on url API, just edit function.js, look for and modify urlAPI
 
 ## General Architecture
 Web application is made of four HTML pages
@@ -33,8 +33,8 @@ Web application is made of four HTML pages
 ## Tools & Software used
 - Visual Studio Code with extensions Prettier & Live Server
 - Git & Github
-- Webpack
-- Languages: HTML, CSS, Bootstrap, Javascript
+- Languages: HTML, CSS, Javascript
+- Framework: Bootstrap
 
 ## Additinal functions
 - In addition to the required functionalities, the basket page gives the possibility to empty basket or go-on shopping
